@@ -10,7 +10,9 @@
 #import "ViewModel.h"
 #import "TableViewCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "CHXArrayDataSource.h"
 
+#define THIN_VC
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -18,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, assign) NSInteger currentPage;
+
+
+@property (nonatomic, strong) CHXArrayDataSource *arrayDataSource;
 
 
 @end
@@ -39,12 +44,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+#ifdef THIN_VC
+    self.tableView.dataSource = self.arrayDataSource;
+#endif
+    
+    
+    
     @weakify(self);
     RAC(self, data) = [RACObserve(self.viewModel, tableViewData) map:^id(id value) {
         @strongify(self);
+        
+#ifdef THIN_VC
+        NSMutableArray *currentData = [self.data mutableCopy];
+        if (!currentData.count) {
+            [currentData addObject:[[CHXArrayDataSourceSectionItem alloc] initWithContent:value]];
+        } else {
+            [[currentData firstObject] addContentFromArray:value];
+        }
+        return [NSArray arrayWithArray:currentData];
+#else
         NSMutableArray *currentData = [self.data mutableCopy];
         [currentData addObjectsFromArray:value];
         return [NSArray arrayWithArray:currentData];
+#endif
     }];
 
     [RACObserve(self, data) subscribeNext:^(id x) {
@@ -83,6 +106,24 @@
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell.data = self.data[indexPath.row];
     return cell;
+}
+
+#pragma mark - Accessor
+
+- (CHXArrayDataSource *)arrayDataSource {
+    __weak typeof(self) weakSelf = self;
+    if (!_arrayDataSource) {
+        _arrayDataSource = [[CHXArrayDataSource alloc] initWithDataArrayBlock:^NSArray *{
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            return strongSelf.data;
+        } cellReuseIdentifierForIndexPath:^NSString *(NSIndexPath *indexPath) {
+            return @"Cell";
+        } cellConfigureBlock:^(TableViewCell *cell, id item) {
+            cell.data = item;
+        }];
+    }
+    
+    return _arrayDataSource;
 }
 
 @end

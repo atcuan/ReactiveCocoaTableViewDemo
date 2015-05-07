@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46AFBAEB1AFB011400A28600 /* CHXArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AFBAEA1AFB011400A28600 /* CHXArrayDataSource.m */; };
 		46BDC6AD1AFA2ABB00E56934 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDC6AC1AFA2ABB00E56934 /* main.m */; };
 		46BDC6B01AFA2ABB00E56934 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDC6AF1AFA2ABB00E56934 /* AppDelegate.m */; };
 		46BDC6B31AFA2ABB00E56934 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDC6B21AFA2ABB00E56934 /* ViewController.m */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		46AFBAE91AFB011400A28600 /* CHXArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXArrayDataSource.h; sourceTree = "<group>"; };
+		46AFBAEA1AFB011400A28600 /* CHXArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXArrayDataSource.m; sourceTree = "<group>"; };
 		46BDC6A71AFA2ABB00E56934 /* ReactiveCocoaTableViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactiveCocoaTableViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46BDC6AB1AFA2ABB00E56934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46BDC6AC1AFA2ABB00E56934 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 		46BDC6AA1AFA2ABB00E56934 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				46AFBAE91AFB011400A28600 /* CHXArrayDataSource.h */,
+				46AFBAEA1AFB011400A28600 /* CHXArrayDataSource.m */,
 				46BDC6AB1AFA2ABB00E56934 /* Info.plist */,
 				46BDC6AC1AFA2ABB00E56934 /* main.m */,
 			);
@@ -290,6 +295,7 @@
 			files = (
 				46BDC6B31AFA2ABB00E56934 /* ViewController.m in Sources */,
 				46BDC6B01AFA2ABB00E56934 /* AppDelegate.m in Sources */,
+				46AFBAEB1AFB011400A28600 /* CHXArrayDataSource.m in Sources */,
 				46BDC6D21AFA2C1400E56934 /* ViewModel.m in Sources */,
 				46BDC6D51AFA2CC000E56934 /* TableViewCell.m in Sources */,
 				46BDC6AD1AFA2ABB00E56934 /* main.m in Sources */,
